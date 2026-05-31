@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f1b2d">
+<title>RK Enterprises - The Painting Experts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0f1b2d;--navy2:#162a45;--gold:#d4a853;--gold-light:#f0d48a;
+  --white:#fff;--gray:#b0bec5;--bg:#f5f0eb;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Poppins',sans-serif;color:#333;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;width:100%;z-index:100;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(15,27,45,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(212,168,83,.15)}
+.nav-logo{font-size:1.25rem;font-weight:700;color:var(--gold);letter-spacing:.5px}
+.nav-logo span{color:var(--white);font-weight:300}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:.85rem;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--navy);padding:10px 22px;border-radius:8px;text-decoration:none;font-weight:600;font-size:.82rem;transition:background .3s;white-space:nowrap}
+.nav-cta:hover{background:var(--gold-light)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{width:22px;height:2px;background:var(--white);transition:all .3s;border-radius:2px}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;min-height:100dvh;background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 50%,#1a3a5c 100%);display:flex;align-items:center;padding:100px 24px 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-30%;width:500px;height:500px;background:radial-gradient(circle,rgba(212,168,83,.06) 0%,transparent 70%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-20%;left:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(212,168,83,.04) 0%,transparent 70%);border-radius:50%}
+.hero-content{max-width:650px;z-index:1;width:100%}
+.hero-badge{display:inline-block;background:rgba(212,168,83,.12);color:var(--gold);padding:7px 18px;border-radius:30px;font-size:.72rem;font-weight:600;letter-spacing:2px;margin-bottom:20px;border:1px solid rgba(212,168,83,.25)}
+.hero h1{font-size:2.6rem;font-weight:800;color:var(--white);line-height:1.15;margin-bottom:18px}
+.hero h1 span{color:var(--gold)}
+.hero p{color:var(--gray);font-size:.95rem;line-height:1.75;margin-bottom:30px;max-width:520px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--navy);padding:14px 28px;border-radius:12px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .3s;display:inline-flex;align-items:center;gap:8px;justify-content:center}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline{border:2px solid rgba(212,168,83,.35);color:var(--gold);padding:14px 28px;border-radius:12px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .3s;display:inline-flex;align-items:center;justify-content:center}
+.btn-outline:hover{border-color:var(--gold);background:rgba(212,168,83,.08)}
+.hero-stats{display:flex;gap:32px;margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,.08)}
+.stat-num{font-size:1.8rem;font-weight:700;color:var(--gold)}
+.stat-label{font-size:.72rem;color:var(--gray);margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
+
+/* ===== SECTIONS ===== */
+section{padding:70px 24px}
+.section-title{text-align:center;margin-bottom:44px}
+.section-title h2{font-size:1.8rem;font-weight:700;color:var(--navy);margin-bottom:8px}
+.section-title .accent{color:var(--gold)}
+.section-title p{color:#888;font-size:.9rem;max-width:480px;margin:0 auto}
+
+/* ===== ABOUT ===== */
+.about{background:var(--bg)}
+.about-content{max-width:720px;margin:0 auto}
+.about-text h3{font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:16px;text-align:center}
+.about-text p{color:#555;line-height:1.8;margin-bottom:14px;font-size:.9rem;text-align:center}
+.mv-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+.mv-card{background:var(--white);padding:22px 18px;border-radius:14px;border-left:3px solid var(--gold);box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.mv-card h4{font-size:.85rem;font-weight:700;color:var(--navy);margin-bottom:6px}
+.mv-card p{font-size:.78rem;color:#666;line-height:1.65}
+
+/* ===== SERVICES ===== */
+.services{background:var(--white)}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:900px;margin:0 auto}
+.svc-card{background:var(--bg);border-radius:16px;padding:28px 22px;transition:all .3s;border:1px solid transparent}
+.svc-card:hover{transform:translateY(-4px);border-color:rgba(212,168,83,.25);box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.svc-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:1.3rem}
+.svc-card h3{font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:8px}
+.svc-card p{font-size:.82rem;color:#666;line-height:1.7}
+
+/* ===== EXPERIENCE ===== */
+.experience{background:linear-gradient(160deg,var(--navy),var(--navy2));color:var(--white)}
+.experience .section-title h2{color:var(--white)}
+.experience .section-title p{color:var(--gray)}
+.exp-list{max-width:680px;margin:0 auto}
+.exp-item{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.exp-item:last-child{border-bottom:none}
+.exp-dot{width:10px;height:10px;background:var(--gold);border-radius:50%;margin-top:7px;flex-shrink:0;box-shadow:0 0 8px rgba(212,168,83,.4)}
+.exp-item h3{font-size:.98rem;font-weight:600;margin-bottom:5px}
+.exp-item p{font-size:.84rem;color:var(--gray);line-height:1.7}
+.exp-tag{display:inline-block;background:rgba(212,168,83,.15);color:var(--gold);padding:3px 10px;border-radius:6px;font-size:.68rem;font-weight:600;margin-bottom:8px;letter-spacing:.5px}
+
+/* ===== STRENGTHS ===== */
+.strengths{background:var(--bg)}
+.str-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:600px;margin:0 auto}
+.str-card{background:var(--white);padding:24px 20px;border-radius:14px;text-align:center;transition:all .3s;border:1px solid #eee}
+.str-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 6px 24px rgba(0,0,0,.05)}
+.str-icon{width:44px;height:44px;background:rgba(212,168,83,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:1.2rem}
+.str-card h4{font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:6px}
+.str-card p{font-size:.78rem;color:#777;line-height:1.6}
+
+/* ===== VALUES ===== */
+.values{background:var(--white)}
+.val-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:550px;margin:0 auto}
+.val-card{text-align:center;padding:24px 16px;background:var(--bg);border-radius:14px}
+.val-icon{width:52px;height:52px;border-radius:50%;background:rgba(212,168,83,.12);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:1.3rem}
+.val-card h4{font-size:.9rem;font-weight:600;color:var(--navy);margin-bottom:6px}
+.val-card p{font-size:.78rem;color:#777;line-height:1.6}
+
+/* ===== CTA ===== */
+.cta-section{background:linear-gradient(160deg,var(--navy),#1a3a5c);padding:70px 24px;text-align:center}
+.cta-section h2{font-size:1.7rem;font-weight:700;color:var(--white);margin-bottom:12px}
+.cta-section p{color:var(--gray);font-size:.9rem;margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ===== FOOTER ===== */
+footer{background:var(--navy);padding:28px 24px;text-align:center;border-top:1px solid rgba(212,168,83,.1)}
+footer p{color:var(--gray);font-size:.78rem}
+footer a{color:var(--gold);text-decoration:none}
+
+/* ===== WHATSAPP FLOAT ===== */
+.wa-float{position:fixed;bottom:20px;right:20px;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 3px 14px rgba(37,211,102,.4);transition:transform .3s;text-decoration:none}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:26px;height:26px;fill:#fff}
+
+/* ===== DESKTOP ===== */
+@media(min-width:769px){
+  nav{padding:14px 48px}
+  .hero{padding:120px 60px 80px}
+  .hero h1{font-size:3.2rem}
+  section{padding:90px 60px}
+  .section-title h2{font-size:2.2rem}
+  .mv-cards{grid-template-columns:1fr 1fr}
+  .str-grid{grid-template-columns:repeat(4,1fr);max-width:900px}
+  .val-grid{grid-template-columns:repeat(4,1fr);max-width:900px}
+  footer{padding:36px 60px}
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;width:100%;background:rgba(15,27,45,.98);flex-direction:column;padding:20px 24px;gap:14px;border-top:1px solid rgba(212,168,83,.15);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  .nav-links.open{display:flex}
+  .nav-cta{padding:8px 18px;font-size:.78rem}
+  .hamburger{display:flex}
+  .hero{min-height:auto;padding:90px 20px 50px}
+  .hero h1{font-size:1.85rem}
+  .hero p{font-size:.88rem}
+  .hero-btns{flex-direction:column}
+  .btn-primary,.btn-outline{width:100%;text-align:center;padding:13px 24px}
+  .hero-stats{gap:0;justify-content:space-between}
+  .hero-stats>div{flex:1;text-align:center}
+  .stat-num{font-size:1.5rem}
+  .stat-label{font-size:.65rem}
+  section{padding:50px 20px}
+  .section-title{margin-bottom:32px}
+  .section-title h2{font-size:1.5rem}
+  .section-title p{font-size:.82rem}
+  .about-text h3{font-size:1.15rem}
+  .about-text p{font-size:.85rem}
+  .mv-cards{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr;gap:12px}
+  .svc-card{padding:22px 18px;display:flex;gap:16px;align-items:flex-start}
+  .svc-icon{margin-bottom:0;flex-shrink:0;width:44px;height:44px;font-size:1.1rem}
+  .svc-card-text{flex:1}
+  .str-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .str-card{padding:20px 14px}
+  .val-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .val-card{padding:20px 14px}
+  .cta-section{padding:50px 20px}
+  .cta-section h2{font-size:1.4rem}
+  .cta-btns{flex-direction:column}
+  .cta-btns .btn-primary,.cta-btns .btn-outline{width:100%}
+  .exp-item{gap:14px;padding:18px 0}
+}
+
+/* ===== SMALL PHONES ===== */
+@media(max-width:380px){
+  .hero h1{font-size:1.6rem}
+  .hero-badge{font-size:.65rem;padding:6px 14px}
+  .stat-num{font-size:1.3rem}
+  .str-card h4,.val-card h4{font-size:.8rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">RK <span>Enterprises</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" onclick="document.getElementById('navLinks').classList.remove('open')">About</a></li>
+    <li><a href="#services" onclick="document.getElementById('navLinks').classList.remove('open')">Services</a></li>
+    <li><a href="#experience" onclick="document.getElementById('navLinks').classList.remove('open')">Experience</a></li>
+    <li><a href="#strengths" onclick="document.getElementById('navLinks').classList.remove('open')">Why Us</a></li>
+  </ul>
+  <a href="tel:+919849974679" class="nav-cta">Call Now</a>
+  <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">EST. 2024 &bull; HYDERABAD</div>
+    <h1>Professional <span>Painting</span> Solutions You Can Trust</h1>
+    <p>High-quality interior and exterior painting services for residential, commercial, and industrial projects with experienced professionals and premium materials.</p>
+    <div class="hero-btns">
+      <a href="tel:+919849974679" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.21 2.2z"/></svg>
+        +91 98499 74679
+      </a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">15+</div><div class="stat-label">Years Experience</div></div>
+      <div><div class="stat-num">3+</div><div class="stat-label">Premium Projects</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-label">Quality Focus</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-title">
+    <h2>About <span class="accent">RK Enterprises</span></h2>
+    <p>The Painting Experts — delivering excellence</p>
+  </div>
+  <div class="about-content">
+    <div class="about-text">
+      <h3>Built on Experience, Driven by Quality</h3>
+      <p>We are professional painting contractors headquartered in Hyderabad, specializing in high-quality interior and exterior painting solutions for residential, commercial, and industrial projects.</p>
+      <p>Our supervisory team consists of professionals with more than 15 years of hands-on experience in quality control, productivity management, safety practices, and efficient execution.</p>
+      <div class="mv-cards">
+        <div class="mv-card">
+          <h4>Our Mission</h4>
+          <p>To provide reliable, durable, and aesthetically pleasing painting services that enhance property value.</p>
+        </div>
+        <div class="mv-card">
+          <h4>Our Vision</h4>
+          <p>To be recognized as the top painting contractor known for excellence in quality, timely completion, and professional standards.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-title">
+    <h2>Our <span class="accent">Services</span></h2>
+    <p>Comprehensive painting solutions for every need</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div class="svc-icon">&#127968;</div>
+      <div class="svc-card-text">
+        <h3>Interior Painting</h3>
+        <p>Walls, ceilings, trims, and decorative finishes. Transform indoor spaces with flawless coatings.</p>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">&#127959;</div>
+      <div class="svc-card-text">
+        <h3>Exterior Painting</h3>
+        <p>Facades, fences, decks, and waterproof coatings. Protect and beautify your exteriors.</p>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">&#127912;</div>
+      <div class="svc-card-text">
+        <h3>Specialty Finishes</h3>
+        <p>Textures, murals, faux finishes, and decorative effects for unique character.</p>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">&#128736;</div>
+      <div class="svc-card-text">
+        <h3>Surface Preparation</h3>
+        <p>Thorough cleaning, sanding, and priming for a perfect, long-lasting base.</p>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">&#128167;</div>
+      <div class="svc-card-text">
+        <h3>Waterproof Coatings</h3>
+        <p>Advanced weather-resistant coatings for lasting durability against rain and moisture.</p>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">&#128260;</div>
+      <div class="svc-card-text">
+        <h3>Maintenance & Touch-ups</h3>
+        <p>Keep spaces fresh with periodic touch-ups and professional repainting services.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="section-title">
+    <h2>Our <span class="accent">Experience</span></h2>
+    <p>Trusted by leading developers in Hyderabad</p>
+  </div>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div>
+        <div class="exp-tag">ONGOING</div>
+        <h3>DSR World</h3>
+        <p>Currently executing painting works for this prestigious project by the DSR Group, delivering premium-quality finishes.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div>
+        <div class="exp-tag">COMPLETED</div>
+        <h3>The Classe by DSR — Kokapet</h3>
+        <p>Successfully completed painting works for this premium residential development with timely delivery.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div>
+        <div class="exp-tag">COMPLETED</div>
+        <h3>DLF — Gachibowli</h3>
+        <p>Delivered high-quality painting solutions for this major commercial development on schedule.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTHS -->
+<section class="strengths" id="strengths">
+  <div class="section-title">
+    <h2>Why Choose <span class="accent">Us</span></h2>
+    <p>What sets RK Enterprises apart</p>
+  </div>
+  <div class="str-grid">
+    <div class="str-card">
+      <div class="str-icon">&#128101;</div>
+      <h4>Certified Workforce</h4>
+      <p>Experienced professionals recruited from across India.</p>
+    </div>
+    <div class="str-card">
+      <div class="str-icon">&#127811;</div>
+      <h4>Eco-Friendly Paints</h4>
+      <p>Premium-grade, eco-friendly paints for safe results.</p>
+    </div>
+    <div class="str-card">
+      <div class="str-icon">&#9200;</div>
+      <h4>Timely Delivery</h4>
+      <p>Proven track record of on-schedule completion.</p>
+    </div>
+    <div class="str-card">
+      <div class="str-icon">&#128161;</div>
+      <h4>Expert Supervision</h4>
+      <p>Close supervision by 15+ year experienced team.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="section-title">
+    <h2>Our Core <span class="accent">Values</span></h2>
+  </div>
+  <div class="val-grid">
+    <div class="val-card">
+      <div class="val-icon">&#11088;</div>
+      <h4>Quality</h4>
+      <p>Premium paints and skilled professionals.</p>
+    </div>
+    <div class="val-card">
+      <div class="val-icon">&#129309;</div>
+      <h4>Integrity</h4>
+      <p>Transparent pricing, honest communication.</p>
+    </div>
+    <div class="val-card">
+      <div class="val-icon">&#128154;</div>
+      <h4>Safety</h4>
+      <p>Eco-friendly products, safe practices.</p>
+    </div>
+    <div class="val-card">
+      <div class="val-icon">&#127919;</div>
+      <h4>Customer Focus</h4>
+      <p>Tailored solutions for every client.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to Transform Your Space?</h2>
+  <p>Request a free sample work demonstration. We are confident our quality and professionalism will exceed your expectations.</p>
+  <div class="cta-btns">
+    <a href="tel:+919849974679" class="btn-primary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.21 2.2z"/></svg>
+      Call +91 98499 74679
+    </a>
+    <a href="https://wa.me/919849974679?text=Hi%2C%20I%20am%20interested%20in%20your%20painting%20services.%20Please%20share%20details." class="btn-outline" target="_blank" style="border-color:rgba(37,211,102,.5);color:#25D366">
+      WhatsApp Us
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>RK Enterprises &mdash; The Painting Experts &bull; Hyderabad &bull; <a href="tel:+919849974679">+91 98499 74679</a></p>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/919849974679?text=Hi%2C%20I%20am%20interested%20in%20your%20painting%20services.%20Please%20share%20details." class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785a9.7 9.7 0 01-4.95-1.355l-.355-.21-3.676.964.981-3.583-.232-.369A9.7 9.7 0 012.3 12.05c0-5.385 4.383-9.768 9.77-9.768a9.71 9.71 0 016.91 2.863 9.71 9.71 0 012.862 6.913c-.003 5.386-4.385 9.768-9.77 9.768zM20.52 3.449C18.24 1.226 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893a11.84 11.84 0 001.587 5.945L0 24l6.335-1.652A11.95 11.95 0 0012.05 23.78c6.583 0 11.94-5.334 11.943-11.893a11.82 11.82 0 00-3.473-8.438z"/></svg>
+</a>
+
+</body>
+</html>
