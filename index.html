@@ -167,12 +167,52 @@ footer a{color:var(--gold);text-decoration:none}
   .exp-item{gap:14px;padding:18px 0}
 }
 
+/* ===== SLIDESHOW ===== */
+.slideshow-section{padding:0 24px 50px;background:var(--bg)}
+.slideshow-section.dark{background:linear-gradient(160deg,var(--navy),var(--navy2));padding-top:60px;padding-bottom:60px}
+.slideshow-section .section-title h2{color:var(--navy)}
+.slideshow-section.dark .section-title h2{color:var(--white)}
+.slideshow-section.dark .section-title p{color:var(--gray)}
+.slideshow-wrap{position:relative;max-width:700px;margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.slideshow-wrap img{width:100%;height:320px;object-fit:cover;display:none;animation:slideFadeIn .6s ease}
+.slideshow-wrap img.active{display:block}
+@keyframes slideFadeIn{from{opacity:0;transform:scale(1.02)}to{opacity:1;transform:scale(1)}}
+.slide-dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.slide-dots span{width:10px;height:10px;border-radius:50%;background:rgba(212,168,83,.25);cursor:pointer;transition:all .3s}
+.slide-dots span.active{background:var(--gold);transform:scale(1.2)}
+.slide-arrow{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(15,27,45,.6);color:#fff;border:none;font-size:1.1rem;cursor:pointer;transition:background .3s;display:flex;align-items:center;justify-content:center;z-index:2;backdrop-filter:blur(4px)}
+.slide-arrow:hover{background:rgba(212,168,83,.8)}
+.slide-arrow.prev{left:10px}
+.slide-arrow.next{right:10px}
+.slide-caption{position:absolute;bottom:0;left:0;right:0;padding:16px 20px;background:linear-gradient(transparent,rgba(15,27,45,.75));color:#fff;font-size:.8rem;font-weight:500;letter-spacing:.3px}
+
+/* hero slideshow - visible on mobile below hero */
+.hero-slideshow{display:none;padding:30px 20px 0}
+.hero-slideshow .slideshow-wrap{box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.hero-slideshow .slideshow-wrap img{height:240px}
+.hero-slideshow .slide-dots span{background:rgba(255,255,255,.3)}
+.hero-slideshow .slide-dots span.active{background:var(--gold)}
+
+@media(max-width:768px){
+  .hero-slideshow{display:block;background:linear-gradient(180deg,var(--navy2),var(--navy));padding-bottom:30px}
+  .slideshow-wrap img{height:240px}
+}
+@media(min-width:769px){
+  .hero-slideshow{display:block;background:linear-gradient(180deg,var(--navy2) 0%,#1a3a5c 100%);padding:40px 60px}
+  .hero-slideshow .slideshow-wrap{max-width:800px}
+  .hero-slideshow .slideshow-wrap img{height:380px}
+  .slideshow-wrap img{height:400px}
+  .slideshow-section{padding:0 60px 70px}
+  .slideshow-section.dark{padding:70px 60px}
+}
+
 /* ===== SMALL PHONES ===== */
 @media(max-width:380px){
   .hero h1{font-size:1.6rem}
   .hero-badge{font-size:.65rem;padding:6px 14px}
   .stat-num{font-size:1.3rem}
   .str-card h4,.val-card h4{font-size:.8rem}
+  .hero-slideshow .slideshow-wrap img{height:200px}
 }
 </style>
 </head>
@@ -213,6 +253,25 @@ footer a{color:var(--gold);text-decoration:none}
     </div>
   </div>
 </section>
+
+<!-- HERO SLIDESHOW -->
+<div class="hero-slideshow">
+  <div class="slideshow-wrap" id="heroSlider">
+    <button class="slide-arrow prev" onclick="slideMove('hero',-1)">&#10094;</button>
+    <img src="photos/hero1.jpeg" class="active" alt="Premium building project">
+    <img src="photos/hero2.jpeg" alt="Exterior painting work">
+    <img src="photos/hero3.jpeg" alt="High-rise project">
+    <img src="photos/hero4.jpeg" alt="Villa painting">
+    <button class="slide-arrow next" onclick="slideMove('hero',1)">&#10095;</button>
+    <div class="slide-caption">Our Recent Projects</div>
+  </div>
+  <div class="slide-dots" id="heroDots">
+    <span class="active" onclick="slideTo('hero',0)"></span>
+    <span onclick="slideTo('hero',1)"></span>
+    <span onclick="slideTo('hero',2)"></span>
+    <span onclick="slideTo('hero',3)"></span>
+  </div>
+</div>
 
 <!-- ABOUT -->
 <section class="about" id="about">
@@ -325,6 +384,27 @@ footer a{color:var(--gold);text-decoration:none}
   </div>
 </section>
 
+<!-- GALLERY SLIDESHOW -->
+<section class="slideshow-section dark">
+  <div class="section-title">
+    <h2>Our <span class="accent">Work</span> in Action</h2>
+    <p>Professional painting by skilled craftsmen</p>
+  </div>
+  <div class="slideshow-wrap" id="gallerySlider">
+    <button class="slide-arrow prev" onclick="slideMove('gallery',-1)">&#10094;</button>
+    <img src="photos/gallery1.jpeg" class="active" alt="Interior painting">
+    <img src="photos/gallery2.jpeg" alt="Completed apartment project">
+    <img src="photos/gallery3.jpeg" alt="Professional painter at work">
+    <button class="slide-arrow next" onclick="slideMove('gallery',1)">&#10095;</button>
+    <div class="slide-caption">Quality Craftsmanship</div>
+  </div>
+  <div class="slide-dots" id="galleryDots">
+    <span class="active" onclick="slideTo('gallery',0)"></span>
+    <span onclick="slideTo('gallery',1)"></span>
+    <span onclick="slideTo('gallery',2)"></span>
+  </div>
+</section>
+
 <!-- STRENGTHS -->
 <section class="strengths" id="strengths">
   <div class="section-title">
@@ -409,5 +489,27 @@ footer a{color:var(--gold);text-decoration:none}
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785a9.7 9.7 0 01-4.95-1.355l-.355-.21-3.676.964.981-3.583-.232-.369A9.7 9.7 0 012.3 12.05c0-5.385 4.383-9.768 9.77-9.768a9.71 9.71 0 016.91 2.863 9.71 9.71 0 012.862 6.913c-.003 5.386-4.385 9.768-9.77 9.768zM20.52 3.449C18.24 1.226 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893a11.84 11.84 0 001.587 5.945L0 24l6.335-1.652A11.95 11.95 0 0012.05 23.78c6.583 0 11.94-5.334 11.943-11.893a11.82 11.82 0 00-3.473-8.438z"/></svg>
 </a>
 
+<script>
+const sliders={
+  hero:{el:document.getElementById('heroSlider'),dots:document.getElementById('heroDots'),idx:0,len:4,timer:null},
+  gallery:{el:document.getElementById('gallerySlider'),dots:document.getElementById('galleryDots'),idx:0,len:3,timer:null}
+};
+function showSlide(k,i){
+  const s=sliders[k],imgs=s.el.querySelectorAll('img'),dots=s.dots.querySelectorAll('span');
+  s.idx=((i%s.len)+s.len)%s.len;
+  imgs.forEach((img,n)=>{img.classList.toggle('active',n===s.idx)});
+  dots.forEach((d,n)=>{d.classList.toggle('active',n===s.idx)});
+}
+function slideMove(k,d){showSlide(k,sliders[k].idx+d);resetAuto(k)}
+function slideTo(k,i){showSlide(k,i);resetAuto(k)}
+function resetAuto(k){clearInterval(sliders[k].timer);sliders[k].timer=setInterval(()=>showSlide(k,sliders[k].idx+1),4000)}
+Object.keys(sliders).forEach(k=>{sliders[k].timer=setInterval(()=>showSlide(k,sliders[k].idx+1),4000)});
+// touch swipe
+Object.keys(sliders).forEach(k=>{
+  let sx=0;
+  sliders[k].el.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+  sliders[k].el.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){slideMove(k,dx<0?1:-1)}},{passive:true});
+});
+</script>
 </body>
 </html>
